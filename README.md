@@ -1,4 +1,4 @@
-# 🚀 Projet Terraform AWS avec CI/CD
+# Projet Terraform AWS avec CI/CD
 
 Ce projet déploie automatiquement une infrastructure AWS en utilisant Terraform et un pipeline CI/CD (GitLab CI ou GitHub Actions).
 
@@ -248,7 +248,7 @@ Pour améliorer ce projet :
 
 Ce projet est à usage éducatif.
 
-## 👨‍💻 Auteur
+## Auteur
 
 Créé pour le cours Terraform AWS.
 
