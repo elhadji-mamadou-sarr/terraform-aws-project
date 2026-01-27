@@ -21,15 +21,15 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
     
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v4
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ env.TF_VERSION }}
     
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v4
+      uses: aws-actions/configure-aws-credentials@v3
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -39,7 +39,7 @@ jobs:
       run: terraform init
     
     - name: Cache Terraform
-      uses: actions/cache@v4
+      uses: actions/cache@v3
       with:
         path: |
           .terraform
@@ -56,22 +56,22 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
     
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v4
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ env.TF_VERSION }}
     
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v4
+      uses: aws-actions/configure-aws-credentials@v3
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
     
     - name: Restore Terraform Cache
-      uses: actions/cache@v4
+      uses: actions/cache@v3
       with:
         path: |
           .terraform
@@ -108,22 +108,22 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
     
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v4
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ env.TF_VERSION }}
     
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v4
+      uses: aws-actions/configure-aws-credentials@v3
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
     
     - name: Restore Terraform Cache
-      uses: actions/cache@v4
+      uses: actions/cache@v3
       with:
         path: |
           .terraform
