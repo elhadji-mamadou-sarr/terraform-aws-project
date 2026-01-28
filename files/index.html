@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Projet Terraform AWS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(102, 126, 234, 0.6);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; opacity: 0; }
+        .stagger-2 { animation-delay: 0.2s; opacity: 0; }
+        .stagger-3 { animation-delay: 0.3s; opacity: 0; }
+        .stagger-4 { animation-delay: 0.4s; opacity: 0; }
+        .stagger-5 { animation-delay: 0.5s; opacity: 0; }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    
+    <!-- Container Principal -->
+    <div class="glass-effect rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden">
+        
+        <!-- Header avec animation -->
+        <div class="bg-gradient-to-r from-violet-600 to-purple-600 p-8 sm:p-12 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full opacity-10">
+                <div class="absolute top-10 left-10 w-20 h-20 bg-white rounded-full float"></div>
+                <div class="absolute bottom-10 right-10 w-32 h-32 bg-white rounded-full float" style="animation-delay: 1s;"></div>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="flex items-center justify-center mb-4 fade-in-up">
+                    <svg class="w-12 h-12 sm:w-16 sm:h-16 mr-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
+                        Projet Terraform AWS
+                    </h1>
+                </div>
+                <span class="inline-flex items-center bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full font-semibold text-lg pulse-glow fade-in-up stagger-1">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Déployé avec succès!
+                </span>
+            </div>
+        </div>
+        
+        <!-- Contenu Principal -->
+        <div class="p-8 sm:p-12">
+            
+            <!-- Description -->
+            <p class="text-gray-700 text-lg sm:text-xl text-center leading-relaxed mb-10 fade-in-up stagger-2">
+                Bienvenue sur mon projet d'infrastructure as code déployé automatiquement 
+                via un pipeline CI/CD moderne et sécurisé.
+            </p>
+            
+            <!-- Grid des info-boxes -->
+            <div class="grid md:grid-cols-2 gap-6 mb-10">
+                
+                <!-- Ressources créées -->
+                <div class="hover-lift bg-gradient-to-br from-blue-50 to-indigo-50 border-l-4 border-indigo-500 rounded-xl p-6 fade-in-up stagger-3">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-indigo-500 rounded-lg flex items-center justify-center mr-3">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-indigo-900">Ressources créées</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-700">Utilisateur IAM avec permissions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-700">Bucket S3 avec versioning</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-700">Fichier index.html uploadé</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Pipeline CI/CD -->
+                <div class="hover-lift bg-gradient-to-br from-purple-50 to-pink-50 border-l-4 border-purple-500 rounded-xl p-6 fade-in-up stagger-4">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-purple-900">Pipeline CI/CD</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">1</span>
+                            <span class="text-gray-700">terraform init</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">2</span>
+                            <span class="text-gray-700">terraform plan</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">3</span>
+                            <span class="text-gray-700">terraform apply</span>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <!-- Tech Stack -->
+            <div class="fade-in-up stagger-5">
+                <h3 class="text-center text-gray-600 font-semibold mb-4 uppercase tracking-wider text-sm">
+                    Technologies utilisées
+                </h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="bg-gradient-to-r from-orange-400 to-orange-500 text-white px-5 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        Terraform
+                    </span>
+                    <span class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 px-5 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        AWS
+                    </span>
+                    <span class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        GitLab CI
+                    </span>
+                    <span class="bg-gradient-to-r from-gray-700 to-gray-800 text-white px-5 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        GitHub Actions
+                    </span>
+                    <span class="bg-gradient-to-r from-green-500 to-green-600 text-white px-5 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        S3
+                    </span>
+                    <span class="bg-gradient-to-r from-red-500 to-red-600 text-white px-5 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        IAM
+                    </span>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Footer -->
+        <div class="bg-gray-50 px-8 py-6 sm:px-12 border-t border-gray-200">
+            <div class="text-center">
+                <p class="text-gray-600 mb-2 flex items-center justify-center">
+                    Créé avec 
+                    <svg class="w-5 h-5 text-red-500 mx-1 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+                    </svg>
+                    | Infrastructure as Code
+                </p>
+                <p class="text-gray-500 text-sm">
+                    <strong class="font-semibold">Date de déploiement:</strong> 
+                    <span id="date" class="text-violet-600 font-medium"></span>
+                </p>
+            </div>
+        </div>
+        
+    </div>
+    
+    <script>
+        // Afficher la date de déploiement
+        document.getElementById('date').textContent = new Date().toLocaleDateString('fr-FR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    </script>
+    
+</body>
+</html>
