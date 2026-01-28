@@ -59,6 +59,15 @@ resource "aws_s3_bucket" "app_bucket" {
   }
 }
 
+# Désactiver le contrôle de propriété des objets (requis pour l'accès public)
+resource "aws_s3_bucket_ownership_controls" "app_bucket_ownership" {
+  bucket = aws_s3_bucket.app_bucket.id
+
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
 # Configuration du versioning pour le bucket
 resource "aws_s3_bucket_versioning" "app_bucket_versioning" {
   bucket = aws_s3_bucket.app_bucket.id
@@ -68,7 +77,7 @@ resource "aws_s3_bucket_versioning" "app_bucket_versioning" {
   }
 }
 
-# Autoriser l'accès public
+# DÉSACTIVER le blocage de l'accès public
 resource "aws_s3_bucket_public_access_block" "app_bucket_pab" {
   bucket = aws_s3_bucket.app_bucket.id
 
@@ -78,9 +87,12 @@ resource "aws_s3_bucket_public_access_block" "app_bucket_pab" {
   restrict_public_buckets = false
 }
 
-# Ajouter une policy publique
+# Policy pour autoriser l'accès public en lecture
 resource "aws_s3_bucket_policy" "app_bucket_policy" {
   bucket = aws_s3_bucket.app_bucket.id
+
+  # S'assurer que le public access block est désactivé en premier
+  depends_on = [aws_s3_bucket_public_access_block.app_bucket_pab]
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -96,7 +108,7 @@ resource "aws_s3_bucket_policy" "app_bucket_policy" {
   })
 }
 
-# Upload du fichier index.html
+# Upload du fichier index.html avec ACL public
 resource "aws_s3_object" "index_html" {
   bucket       = aws_s3_bucket.app_bucket.id
   key          = "index.html"
@@ -104,6 +116,9 @@ resource "aws_s3_object" "index_html" {
   content_type = "text/html"
   etag         = filemd5("${path.module}/files/index.html")
   acl          = "public-read"
+
+  # S'assurer que les ownership controls sont configurés en premier
+  depends_on = [aws_s3_bucket_ownership_controls.app_bucket_ownership]
 
   tags = {
     Name        = "index.html"
