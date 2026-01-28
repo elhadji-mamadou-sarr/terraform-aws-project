@@ -68,14 +68,32 @@ resource "aws_s3_bucket_versioning" "app_bucket_versioning" {
   }
 }
 
-# Bloquer l'accès public par défaut
+# Autoriser l'accès public
 resource "aws_s3_bucket_public_access_block" "app_bucket_pab" {
   bucket = aws_s3_bucket.app_bucket.id
 
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
+# Ajouter une policy publique
+resource "aws_s3_bucket_policy" "app_bucket_policy" {
+  bucket = aws_s3_bucket.app_bucket.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid       = "PublicReadGetObject"
+        Effect    = "Allow"
+        Principal = "*"
+        Action    = "s3:GetObject"
+        Resource  = "${aws_s3_bucket.app_bucket.arn}/*"
+      }
+    ]
+  })
 }
 
 # Upload du fichier index.html
@@ -85,6 +103,7 @@ resource "aws_s3_object" "index_html" {
   source       = "${path.module}/files/index.html"
   content_type = "text/html"
   etag         = filemd5("${path.module}/files/index.html")
+  acl          = "public-read"
 
   tags = {
     Name        = "index.html"
