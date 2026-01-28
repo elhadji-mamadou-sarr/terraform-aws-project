@@ -115,7 +115,6 @@ resource "aws_s3_object" "index_html" {
   source       = "${path.module}/files/index.html"
   content_type = "text/html"
   etag         = filemd5("${path.module}/files/index.html")
-  acl          = "public-read"
 
   # S'assurer que les ownership controls sont configurés en premier
   depends_on = [aws_s3_bucket_ownership_controls.app_bucket_ownership]
